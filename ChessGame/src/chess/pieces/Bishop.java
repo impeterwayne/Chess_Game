@@ -54,13 +54,13 @@ public class Bishop extends Piece{
 		}
 		return ImmutableList.copyOf(legalMoves);
 	}
-	public static boolean isFirstColumnExclusive(final int currentPosition, final int candidateCoordinateOffset)
+	public static boolean isFirstColumnExclusive(final int currentPosition, final int candidateOffset)
 	{
-		return BoardUtils.FIRST_COLUMN[currentPosition]&&(candidateCoordinateOffset==7||candidateCoordinateOffset==-9);
+		return BoardUtils.FIRST_COLUMN[currentPosition]&&(candidateOffset==7||candidateOffset==-9);
 	}
-	public static boolean isEightColumnExclusive(final int currentPosition, final int candidateCoordinateOffset)
+	public static boolean isEightColumnExclusive(final int currentPosition, final int candidateOffset)
 	{
-		return BoardUtils.EIGHTH_COLUMN[currentPosition]&&(candidateCoordinateOffset==-7||candidateCoordinateOffset==9);
+		return BoardUtils.EIGHTH_COLUMN[currentPosition]&&(candidateOffset==-7||candidateOffset==9);
 	}
 
 }

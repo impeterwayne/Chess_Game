@@ -35,14 +35,14 @@ public class Rook extends Piece{
 				candidateDestinationCoordinate +=candidateCoordinateOffset;
 				if(BoardUtils.isValidTileCoordinate(candidateDestinationCoordinate))
 				{
-					final Tile candidateCoordinateTile = board.getTile(candidateDestinationCoordinate);
-					if(!candidateCoordinateTile.isOccupiedTile())
+					final Tile candidateDestinationTile = board.getTile(candidateDestinationCoordinate);
+					if(!candidateDestinationTile.isOccupiedTile())
 					{
 						legalMoves.add(new Move.MajorMove(board,this,candidateDestinationCoordinate));
 					}
 					else
 					{
-						final Piece pieceAtDestination = candidateCoordinateTile.getPiece();
+						final Piece pieceAtDestination = candidateDestinationTile.getPiece();
 						final Alliance pieceAlliance = pieceAtDestination.getPieceAlliance();
 						if(this.pieceAlliance!=pieceAlliance)
 						{
