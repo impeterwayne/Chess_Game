@@ -43,7 +43,7 @@ public class Knight extends Piece{
 				final Tile candidateDestinationTile =board.getTile(candidateDestinationCoordinate);
 				if(!candidateDestinationTile.isOccupiedTile())
 				{
-					legalMoves.add(new Move());
+					legalMoves.add(new Move.MajorMove(board,this,candidateDestinationCoordinate));
 				}
 				else
 				{
@@ -51,7 +51,7 @@ public class Knight extends Piece{
 					Alliance pieceAlliance = pieceAtDestination.getPieceAlliance();
 					if(this.pieceAlliance != pieceAlliance)
 					{
-						legalMoves.add(new Move());
+						legalMoves.add(new Move.AttackMove(board,this,candidateDestinationCoordinate, pieceAtDestination));
 					}
 				}
 			}
