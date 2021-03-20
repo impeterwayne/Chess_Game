@@ -27,12 +27,12 @@ public class Bishop extends Piece{
 			int candidateDestinationCoordinate = this.piecePosition;
 			while(BoardUtils.isValidTileCoordinate(candidateDestinationCoordinate))
 			{
-				candidateDestinationCoordinate+= candidateCoordinateOffset;
 				if(isFirstColumnExclusive(candidateDestinationCoordinate, candidateCoordinateOffset)
 					||isEightColumnExclusive(candidateDestinationCoordinate, candidateCoordinateOffset))
 				{
 					break;
 				}
+				candidateDestinationCoordinate+= candidateCoordinateOffset;
 				if(BoardUtils.isValidTileCoordinate(candidateDestinationCoordinate))
 				{
 					final Tile candidateDestinationTile = board.getTile(candidateDestinationCoordinate);

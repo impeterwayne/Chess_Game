@@ -27,12 +27,12 @@ public class Rook extends Piece{
 		{
 			while(BoardUtils.isValidTileCoordinate(candidateDestinationCoordinate))
 			{
-				candidateDestinationCoordinate +=candidateCoordinateOffset;
 				if(isFirstColumnExclusion(candidateDestinationCoordinate, candidateCoordinateOffset)||
 						isEighthColumnExclusion(candidateDestinationCoordinate, candidateCoordinateOffset))
 				{
 					break;
 				}
+				candidateDestinationCoordinate +=candidateCoordinateOffset;
 				if(BoardUtils.isValidTileCoordinate(candidateDestinationCoordinate))
 				{
 					final Tile candidateCoordinateTile = board.getTile(candidateDestinationCoordinate);
