@@ -6,6 +6,12 @@ public abstract class Move {
 	final Board board;
 	final Piece movedPiece;
 	final int destinationCoordinate;
+	/**
+	 * Initiate a move
+	 * @param board							the board
+	 * @param movedPiece					the piece which was moved
+	 * @param destinationCoordinate			the destination coordinate of the moved piece
+	 */
 	Move(final Board board, 
 		final Piece movedPiece,
 		final int destinationCoordinate)
@@ -14,16 +20,24 @@ public abstract class Move {
 		this.movedPiece = movedPiece;
 		this.destinationCoordinate = destinationCoordinate;
 	}
+	/**
+	 *  Inner class Major Move
+	 * 	no change
+	 */
 	public static final class MajorMove extends Move
 	{
-		MajorMove(final Board board, final Piece movedPiece, final int destinationCoordinate) {
+		public MajorMove(final Board board, final Piece movedPiece, final int destinationCoordinate) {
 			super(board, movedPiece, destinationCoordinate);
 		} 
 	}
+	/**
+	 * Inner class Attack Move
+	 *	add a new attribute : attackedPiece <-> the piece which was attacked
+	 */
 	public static final class AttackMove extends Move
 	{
 		final Piece attackedPiece;
-		AttackMove(final Board board, final Piece movedPiece,final int destinationCoordinate,final Piece attackedPiece) {
+		public AttackMove(final Board board, final Piece movedPiece,final int destinationCoordinate,final Piece attackedPiece) {
 			super(board, movedPiece, destinationCoordinate);
 			this.attackedPiece = attackedPiece;
 		}
