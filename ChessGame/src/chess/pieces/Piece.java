@@ -17,7 +17,7 @@ public abstract class Piece {
 	 * Black and White
 	 */
 	protected final Alliance pieceAlliance;
-
+	protected final boolean isFirstMove;
 	/**
 	 * Create a piece
 	 * @param piecePosition		the piece's position
@@ -27,6 +27,8 @@ public abstract class Piece {
 	{
 		this.pieceAlliance = pieceAlliance;
 		this.piecePosition = piecePosition;
+		// TODO more work here!!
+		this.isFirstMove = false;
 	}
 	/**
 	 * Calculate all legal move of the piece and save it into a list
@@ -38,4 +40,8 @@ public abstract class Piece {
 	{
 		return this.pieceAlliance;
 	};
+	public boolean isFirstMove()
+	{
+		return this.isFirstMove;
+	}
 }
