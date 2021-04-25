@@ -14,14 +14,13 @@ import chess.board.Tile;
 public class King extends Piece{
 
 	private final static int[] CANDIDATE_MOVE_COORDINATE = {-9, -8, -7, -1, 1, 7, 8, 9};
-	King(int piecePosition, Alliance pieceAlliance) {
+	public King(final int piecePosition,final Alliance pieceAlliance) {
 		super(piecePosition, pieceAlliance);
 		// TODO Auto-generated constructor stub
 	}
 
 	@Override
 	public Collection<Move> calculateLegalMoves(Board board) {
-		// TODO Auto-generated method stub
 		final List<Move> legalMoves = new ArrayList<>();
 		for(int currentCandidateOffset : CANDIDATE_MOVE_COORDINATE)
 		{

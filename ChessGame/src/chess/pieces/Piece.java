@@ -23,7 +23,7 @@ public abstract class Piece {
 	 * @param piecePosition		the piece's position
 	 * @param pieceAlliance		the piece's color (black and white)
 	 */
-	Piece(int piecePosition, Alliance pieceAlliance)
+	Piece(final int piecePosition, final Alliance pieceAlliance)
 	{
 		this.pieceAlliance = pieceAlliance;
 		this.piecePosition = piecePosition;
@@ -43,5 +43,9 @@ public abstract class Piece {
 	public boolean isFirstMove()
 	{
 		return this.isFirstMove;
+	}
+	public Integer getPiecePosition() {
+		// TODO Auto-generated method stub
+		return this.piecePosition;
 	}
 }
