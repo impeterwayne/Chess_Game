@@ -1,15 +1,15 @@
-package chess.pieces;
+package com.chess.engine.pieces;
 
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
 
-import chess.board.Board;
-import chess.board.BoardUtils;
-import chess.board.Move;
-import chess.board.Move.AttackMove;
-import chess.board.Move.MajorMove;
-import chess.board.Tile;
+import com.chess.engine.board.Board;
+import com.chess.engine.board.BoardUtils;
+import com.chess.engine.board.Move;
+import com.chess.engine.board.Tile;
+import com.chess.engine.board.Move.AttackMove;
+import com.chess.engine.board.Move.MajorMove;
 
 public class King extends Piece{
 
@@ -57,8 +57,10 @@ public class King extends Piece{
 	{
 		return BoardUtils.EIGHTH_COLUMN[currentPosition] && (candidateOffset ==-7||candidateOffset==1||candidateOffset==9);
 	}
+	@Override
+	public String toString()
 	{
-		
+		return Piece.PieceType.KING.toString();
 	}
 
 }

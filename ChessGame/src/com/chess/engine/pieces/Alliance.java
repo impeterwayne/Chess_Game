@@ -1,4 +1,4 @@
-package chess.pieces;
+package com.chess.engine.pieces;
 
 public enum Alliance {
 WHITE
@@ -9,7 +9,7 @@ WHITE
 	}
 
 	@Override
-	protected boolean isBlack() {
+	public boolean isBlack() {
 		// TODO Auto-generated method stub
 		return false;
 	}
@@ -28,20 +28,20 @@ WHITE
 	}
 
 	@Override
-	protected boolean isBlack() {
+	public boolean isBlack() {
 		// TODO Auto-generated method stub
 		return true;
 	}
 
 	@Override
-	protected boolean isWhite() {
+	public boolean isWhite() {
 		// TODO Auto-generated method stub
 		return false;
 	}
 };
 public abstract int getDirection();
 
-protected abstract boolean isBlack();
+public abstract boolean isBlack();
 
 protected abstract boolean isWhite();
 }

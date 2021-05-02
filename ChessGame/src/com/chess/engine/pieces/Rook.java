@@ -1,17 +1,16 @@
-package chess.pieces;
+package com.chess.engine.pieces;
 
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
 
+import com.chess.engine.board.Board;
+import com.chess.engine.board.BoardUtils;
+import com.chess.engine.board.Move;
+import com.chess.engine.board.Tile;
+import com.chess.engine.board.Move.AttackMove;
+import com.chess.engine.board.Move.MajorMove;
 import com.google.common.collect.ImmutableList;
-
-import chess.board.Board;
-import chess.board.BoardUtils;
-import chess.board.Move;
-import chess.board.Move.AttackMove;
-import chess.board.Move.MajorMove;
-import chess.board.Tile;
 
 public class Rook extends Piece{
 	private final static int[] CANDIDATE_MOVE_VECTOR_COORDINATE = {-8,-1,1,8};
@@ -62,6 +61,11 @@ public class Rook extends Piece{
 	private static boolean isEighthColumnExclusion(final int currentPosition, final int candidateOffset)
 	{
 		return BoardUtils.EIGHTH_COLUMN[currentPosition]&&candidateOffset ==1;
+	}
+	@Override
+	public String toString()
+	{
+		return Piece.PieceType.ROOK.toString();
 	}
 
 }

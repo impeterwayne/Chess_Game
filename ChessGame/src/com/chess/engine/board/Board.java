@@ -1,31 +1,42 @@
-package chess.board;
+package com.chess.engine.board;
 
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
 import java.util.Map;
 
+import com.chess.engine.pieces.Alliance;
+import com.chess.engine.pieces.Bishop;
+import com.chess.engine.pieces.King;
+import com.chess.engine.pieces.Knight;
+import com.chess.engine.pieces.Pawn;
+import com.chess.engine.pieces.Piece;
+import com.chess.engine.pieces.Queen;
+import com.chess.engine.pieces.Rook;
 import com.google.common.collect.ImmutableList;
-
-import chess.pieces.Alliance;
-import chess.pieces.Bishop;
-import chess.pieces.King;
-import chess.pieces.Knight;
-import chess.pieces.Pawn;
-import chess.pieces.Piece;
-import chess.pieces.Queen;
-import chess.pieces.Rook;
 
 public class Board {
 
 	public final List<Tile> gameBoard;
 	private final Collection<Piece> whitePieces;
 	private final Collection<Piece> blackPieces;
+	private final Collection<Move> blackStandardLegalMoves;
+	private final Collection<Move> whiteStandardLegalMoves;
 	private Board(Builder builder)
 	{
 		this.gameBoard = createGameBoard(builder);
 		this.whitePieces = calculateActivePieces(this.gameBoard, Alliance.WHITE);
 		this.blackPieces = calculateActivePieces(this.gameBoard, Alliance.BLACK);
+		this.blackStandardLegalMoves = calculateLegalMoves(this.blackPieces);
+		this.whiteStandardLegalMoves = calculateLegalMoves(this.whitePieces);
+	}
+	private Collection<Move> calculateLegalMoves(Collection<Piece> pieces) {
+		final List<Move> legalMoves = new ArrayList<>();
+		for(final Piece piece : pieces)
+		{
+			legalMoves.addAll(piece.calculateLegalMoves(this));
+		}
+		return ImmutableList.copyOf(legalMoves);
 	}
 	private Collection<Piece> calculateActivePieces(List<Tile> gameBoard2, Alliance alliance) {
 		final List<Piece> activePieces = new ArrayList<>();
@@ -42,6 +53,21 @@ public class Board {
 		}
 		return ImmutableList.copyOf(activePieces);
 	}
+	@Override
+	public String toString()
+	{
+		StringBuilder builder = new StringBuilder();
+		for(int i=0; i<BoardUtils.NUM_TILES; i++)
+		{
+			final String tileText = this.gameBoard.get(i).toString();
+			builder.append(String.format("%3s", tileText));
+			if((i+1) % BoardUtils.NUM_TILES_PER_ROW==0) {
+				builder.append("\n");
+			}
+		}
+		return builder.toString();
+	}
+	
 	private List<Tile> createGameBoard(final Builder builder) {
 		Tile[] tiles = new Tile[BoardUtils.NUM_TILES];
 		for(int i=0; i<BoardUtils.NUM_TILES; i++)
@@ -63,11 +89,15 @@ public class Board {
 		builder.setPiece(new Bishop(5,Alliance.BLACK));
 		builder.setPiece(new Knight(6,Alliance.BLACK));
 		builder.setPiece(new Rook(7,Alliance.BLACK));
-		//Black Pawns Row
-		for(int i=8; i<16; i++)
-		{
-			builder.setPiece(new Pawn(i,Alliance.BLACK));
-		}
+		builder.setPiece(new Pawn(8, Alliance.BLACK));
+		builder.setPiece(new Pawn(9, Alliance.BLACK));
+		builder.setPiece(new Pawn(10, Alliance.BLACK));
+		builder.setPiece(new Pawn(11, Alliance.BLACK));
+		builder.setPiece(new Pawn(12, Alliance.BLACK));
+		builder.setPiece(new Pawn(13, Alliance.BLACK));
+		builder.setPiece(new Pawn(14, Alliance.BLACK));
+		builder.setPiece(new Pawn(15, Alliance.BLACK));
+		
 		//White Layout
 		builder.setPiece(new Rook(56,Alliance.WHITE));
 		builder.setPiece(new Knight(57,Alliance.WHITE));
@@ -77,12 +107,16 @@ public class Board {
 		builder.setPiece(new Bishop(61,Alliance.WHITE));
 		builder.setPiece(new Knight(62,Alliance.WHITE));
 		builder.setPiece(new Rook(63,Alliance.WHITE));
-		//White Pawns Row
-		for(int i=48; i<56; i++)
-		{
-			builder.setPiece(new Pawn(i,Alliance.WHITE));
-		}
-		return null;
+		builder.setPiece(new Pawn(48,Alliance.WHITE));
+		builder.setPiece(new Pawn(49,Alliance.WHITE));
+		builder.setPiece(new Pawn(50,Alliance.WHITE));
+		builder.setPiece(new Pawn(51,Alliance.WHITE));
+		builder.setPiece(new Pawn(52,Alliance.WHITE));
+		builder.setPiece(new Pawn(53,Alliance.WHITE));
+		builder.setPiece(new Pawn(54,Alliance.WHITE));
+		builder.setPiece(new Pawn(55,Alliance.WHITE));
+		builder.setMoveMaker(Alliance.WHITE);
+		return builder.build();
 		
 	}
 	public Tile getTile(final int tileCoordinate) {
@@ -96,7 +130,7 @@ public class Board {
 		Alliance nextMoveMaker;
 		public Builder()
 		{
-			
+				
 		}
 		public Builder setPiece(final Piece piece)
 		{

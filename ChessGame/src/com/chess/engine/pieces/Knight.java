@@ -1,15 +1,14 @@
-package chess.pieces;
+package com.chess.engine.pieces;
 
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
 
+import com.chess.engine.board.Board;
+import com.chess.engine.board.BoardUtils;
+import com.chess.engine.board.Move;
+import com.chess.engine.board.Tile;
 import com.google.common.collect.ImmutableList;
-
-import chess.board.Board;
-import chess.board.BoardUtils;
-import chess.board.Move;
-import chess.board.Tile;
 
 public class Knight extends Piece{
 
@@ -74,6 +73,11 @@ public class Knight extends Piece{
 	public static boolean isEighthColumnExclusion(final int currentPosition, final int candidateOffset)
 	{
 		return BoardUtils.EIGHTH_COLUMN[currentPosition]&&(candidateOffset==-6||candidateOffset==-15||candidateOffset==10||candidateOffset==17);
+	}
+	@Override
+	public String toString()
+	{
+		return Piece.PieceType.KNIGHT.toString();
 	}
 
 }

@@ -1,16 +1,15 @@
-package chess.pieces;
+package com.chess.engine.pieces;
 
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
 
+import com.chess.engine.board.Board;
+import com.chess.engine.board.BoardUtils;
+import com.chess.engine.board.Move;
+import com.chess.engine.board.Move.AttackMove;
+import com.chess.engine.board.Move.MajorMove;
 import com.google.common.collect.ImmutableList;
-
-import chess.board.Board;
-import chess.board.BoardUtils;
-import chess.board.Move;
-import chess.board.Move.AttackMove;
-import chess.board.Move.MajorMove;
 
 public class Pawn extends Piece{
 	private final static int[] CANDIDATE_MOVE_COORDINATE = {8,16,7,9};
@@ -69,6 +68,11 @@ public class Pawn extends Piece{
 			}
 		}
 		return ImmutableList.copyOf(legalMoves);
+	}
+	@Override
+	public String toString()
+	{
+		return Piece.PieceType.PAWN.toString();
 	}
 
 }

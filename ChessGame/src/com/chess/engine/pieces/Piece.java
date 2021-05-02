@@ -1,11 +1,11 @@
-package chess.pieces;
+package com.chess.engine.pieces;
 
 import java.util.Collection;
 import java.util.Collections;
 import java.util.List;
 
-import chess.board.Board;
-import chess.board.Move;
+import com.chess.engine.board.Board;
+import com.chess.engine.board.Move;
 
 
 public abstract class Piece {
@@ -47,5 +47,24 @@ public abstract class Piece {
 	public Integer getPiecePosition() {
 		// TODO Auto-generated method stub
 		return this.piecePosition;
+	}
+	public enum PieceType
+	{
+		PAWN("P"),
+		ROOK("R"),
+		KNIGHT("N"),
+		BISHOP("B"),
+		QUEEN("Q"),
+		KING("K");
+		private String pieceName;
+		private PieceType(final String pieceName)
+		{
+			this.pieceName = pieceName;
+		}
+		@Override
+		public String toString()
+		{
+			return this.pieceName;
+		}
 	}
 }
